@@ -7,7 +7,8 @@ let $ = function(id){
 let generateCode = function(){
     let output = "";
     let template = $("template").value;
-    let inserts = $("inserts").value.split("\n");
+    template = template.replaceAll("#name#", "#0#");
+    let inserts = $("inserts").value.replaceAll("\t",",").split("\n");
     for (let i = 0; i < inserts.length; i++){
         let vars = inserts[i].split(",");
         let generated = template;
@@ -16,6 +17,8 @@ let generateCode = function(){
         }
         output += generated+"\n";
     }
+    $("divOutput").innerHTML = 'Output<br>'
+        +'<textarea id="output" placeholder="Generated Code" rows="10" cols="50"></textarea>';
     let txtOutput = $("output");
     txtOutput.value = output;
     txtOutput.select();
@@ -51,7 +54,7 @@ let generateEmailButtons = function(){
             emailText += "</table>";
         emailText += "</div>";
     }
-    $("divEmailButtons").innerHTML = emailText;
+    $("divOutput").innerHTML = emailText;
 }
 
 let sendEmail = function(index){
@@ -65,7 +68,7 @@ let sendEmail = function(index){
         let output = template.replaceAll("#name#", name);
         output = encodeURIComponent(output);
         console.log(output);
-        window.open('mailto:'+email+'?subject="Certificate"&body='+output);
+        window.open('mailto:'+email+'?subject=Certificate&body='+output);
         $("chkEmail"+index).checked = true;
 }
 
