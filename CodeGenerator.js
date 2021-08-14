@@ -37,8 +37,8 @@ let generateEmailButtons = function(){
         if (!name && !email){
             continue;
         }
-        name = name || "(Name)";
-        email = email || "(Email)";
+        name = name || "<span style='color:red'>(Name)</span>";
+        email = email || "<span style='color:red'>(Email)</span>";
         emailText += "<div class='btn-email'>";
             emailText += "<table>";
                 emailText += "<tr>";
