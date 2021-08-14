@@ -21,7 +21,6 @@ let generateCode = function(){
     txtOutput.select();
     // txtOutput.setSelectionRange(0,99999);
     document.execCommand("copy");
-    window.open('mailto:test@example.com?subject="Certificate"&body='+encodeURIComponent(output));
 }
 
 let generateEmailButtons = function(){
@@ -41,9 +40,9 @@ let generateEmailButtons = function(){
             emailText += "<table>";
                 emailText += "<tr>";
                     emailText += "<td>";
-                        emailText += "<input type='checkbox' id='chkEmail'>";
+                        emailText += "<input type='checkbox' id='chkEmail"+i+"'>";
                     emailText += "</td>";
-                    emailText += "<td>";
+                    emailText += "<td onclick='sendEmail("+i+")' width=100%>";
                         emailText += name;
                         emailText += "<br>";
                         emailText += email;
@@ -53,6 +52,21 @@ let generateEmailButtons = function(){
         emailText += "</div>";
     }
     $("divEmailButtons").innerHTML = emailText;
+}
+
+let sendEmail = function(index){
+        let inserts = $("inserts").value.split('\n');
+        let template = $("template").value;
+        let vars = inserts[index].split('\t');
+        let name = vars[0] || "(Name)";
+        name = name.trim();
+        let email = vars[1] || "(Email)";
+        email = email.trim();
+        let output = template.replaceAll("#name#", name);
+        output = encodeURIComponent(output);
+        console.log(output);
+        window.open('mailto:'+email+'?subject="Certificate"&body='+output);
+        $("chkEmail"+index).checked = true;
 }
 
 //2019-12-27a: copied from https://stackoverflow.com/a/14822579/2336212
