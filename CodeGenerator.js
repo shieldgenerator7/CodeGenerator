@@ -29,6 +29,7 @@ let generateCode = function(){
 let generateEmailButtons = function(){
     let emailText = "";
     let inserts = $("inserts").value.split("\n");
+    emailText += '<br><input type="text" id="txtSubject" placeholder="Subject"/><br>';
     for (let i = 0; i < inserts.length; i++){
         let vars = inserts[i].split('\t');
         let name = vars[0];
@@ -67,7 +68,9 @@ let sendEmail = function(index){
         let output = template.replaceAll("#name#", name);
         output = encodeURIComponent(output);
         console.log(output);
-        window.open('mailto:'+email+'?subject=Certificate&body='+output);
+        let subject = $("txtSubject").value || "Subject";
+        subject = encodeURIComponent(subject.trim());
+        window.open('mailto:'+email+'?subject='+subject+'&body='+output);
         $("chkEmail"+index).checked = true;
 }
 
