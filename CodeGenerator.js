@@ -21,7 +21,7 @@ let generateCode = function(){
     txtOutput.select();
     // txtOutput.setSelectionRange(0,99999);
     document.execCommand("copy");
-    window.open('mailto:test@example.com?subject="Certificate"&body='+output);
+    window.open('mailto:test@example.com?subject="Certificate"&body='+encodeURIComponent(output));
 }
 
 //2019-12-27a: copied from https://stackoverflow.com/a/14822579/2336212
