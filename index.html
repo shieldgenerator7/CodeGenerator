@@ -7,8 +7,14 @@
     <textarea id="inserts" placeholder="Text to insert" rows="5" cols="50"></textarea>
     <textarea id="template" placeholder="Template text" rows="5" cols="50"></textarea>
     <button type="button" id="btnGenerate" onclick="generateCode();">Generate</button>
+    <button type="button" id="btnGenerateEmails" onclick="generateEmailButtons();">Generate Emails</button>
     <br>
-    Output
+    Output<br>
+    <input type="checkbox" id="chkEmail">
+    <label for="chkEmail">Email the output</label>
+    <input type="input" id="txtEmailCode" placeholder="#0#" value="#0#">
+    <div id="divEmailButtons">
+    </div>
     <br>
     <textarea id="output" placeholder="Generated Code" rows="10" cols="50"></textarea>
 </body>
