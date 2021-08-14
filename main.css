@@ -1,3 +1,14 @@
 textarea{
     overflow-wrap: break-word
 }
+
+.btn-email{
+    border:1px;
+    border-style:solid;
+    width:392px;
+    margin:5px;
+}
+
+.btn-email:hover{
+    background:#35C9FF;
+}
