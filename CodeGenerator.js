@@ -30,6 +30,8 @@ let generateEmailButtons = function(){
     let emailText = "";
     let inserts = $("inserts").value.split("\n");
     emailText += '<br><input type="text" id="txtSubject" placeholder="Subject"/><br>';
+    emailText +='<input type="checkbox" id="chkFirstName"/>';
+    emailText +='<label for="chkFirstName">First Name Only</label>';
     for (let i = 0; i < inserts.length; i++){
         let vars = inserts[i].split('\t');
         let name = vars[0];
@@ -63,6 +65,9 @@ let sendEmail = function(index){
         let vars = inserts[index].split('\t');
         let name = vars[0] || "(Name)";
         name = name.trim();
+        if ($("chkFirstName")){
+            name = name.split(' ')[0].trim();
+        }
         let email = vars[1] || "(Email)";
         email = email.trim();
         let output = template.replaceAll("#name#", name);
