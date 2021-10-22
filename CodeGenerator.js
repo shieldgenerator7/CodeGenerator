@@ -79,6 +79,28 @@ let sendEmail = function(index){
         $("chkEmail"+index).checked = true;
 }
 
+let numberList = function(){
+    let output = "";
+    // let template = $("template").value;
+    // template = template.replaceAll("#name#", "#0#");
+    let inserts = $("inserts").value.split("\n");
+    for (let i = 0; i < inserts.length; i++){
+        let item = inserts[i].trim();
+        if(item.includes(":")){
+            item = item.split(":")[1].trim();
+        }
+        let generated = i+": "+item;
+        output += generated+"\n";
+    }
+    $("divOutput").innerHTML = 'Output<br>'
+        +'<textarea id="output" placeholder="Numbered List" rows="10" cols="50"></textarea>';
+    let txtOutput = $("output");
+    txtOutput.value = output;
+    txtOutput.select();
+    // txtOutput.setSelectionRange(0,99999);
+    document.execCommand("copy");
+}
+
 //2019-12-27a: copied from https://stackoverflow.com/a/14822579/2336212
 String.prototype.replaceAll = function (find, replace) {
     var str = this;
